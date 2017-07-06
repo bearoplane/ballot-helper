@@ -7,6 +7,7 @@ import createStore from './createStore'
 
 import CourseList from './components/CourseList'
 import TimeTables from './components/TimeTables'
+import TopMenu from './components/TopMenu'
 
 const schema = [
   'type',
@@ -22,15 +23,38 @@ const schema = [
   'texam'
 ]
 
+// These must match the values in the data
+const Compulsory = 'Compulsory'
+const Seminar = 'Seminar'
+const Special = 'Special Application'
+const Approval = 'Instructor Approval'
+const Other = 'Other'
+
+const Ballot = 'Ballot'
+const Application = 'Application'
+const Instructor = 'Instructor Approval'
+const eServices = 'eServices'
+
 class App extends Component {
   constructor(props) {
     super(props)
 
     this.state = {
-      store: createStore(classes, schema, { cell: '|', row: ';' })
+      store: createStore(classes, schema, { cell: '|', row: ';' }),
+      type: {
+        [Compulsory]: true,
+        [Seminar]: true,
+        [Special]: true,
+        [Approval]: true,
+        [Other]: true
+      },
+      selection: {
+        [Ballot]: true,
+        [Application]: true,
+        [Instructor]: true,
+        [eServices]: true
+      }
     }
-
-    this._setSelected
   }
 
   getFromStorage() {
@@ -56,20 +80,31 @@ class App extends Component {
   }
 
   _setSelected = (selected) => {
-    let selectedCourses = selected === 'all' ? Object.keys(this.state.store.data) : selected
-
     this.setState({
-      selected: selectedCourses
+      selected
     })
-    this.saveToStorage(selectedCourses)
+    this.saveToStorage(selected)
+  }
+  _updateFilters = (filter, prop, val) => {
+    this.setState({
+      [filter]: {
+        ...this.state[filter],
+        [prop]: !this.state[filter][prop]
+      }
+    })
   }
 
   render() {
-    const { selected, store } = this.state
+    const { selected, store, type, selection } = this.state
 
+    const courses = Object.values(store.data).filter(course => {
+      console.log('type', course.type, type[course.type], 'selection', course.selection, selection[course.selection])
+      return type[course.type] && selection[course.selection]
+    })
+// <TopMenu filters={{ type, selection }} updateFilters={this._updateFilters} />
     return (
       <div className="App">
-        <CourseList selectedCourses={selected} courses={Object.values(store.data)} setSelected={this._setSelected} />
+        <CourseList selectedCourses={selected} courses={courses} setSelected={this._setSelected} />
         <TimeTables courses={selected.map(key => store.get(key))} />
       </div>
     )

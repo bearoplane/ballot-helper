@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react'
+import React from 'react'
 import {
   Table,
   TableBody,
@@ -50,9 +50,16 @@ const CourseList = ({ courses, setSelected, selectedCourses }) => {
 */
 
   return (
-    <div className="CourseList" style={{ width: '50%' }}>
-      <Table onRowSelection={handleRowSelection} multiSelectable={true} fixedHeader={true}>
-        <TableHeader>
+    <div className="CourseList" style={{ width: '65%' }}>
+      <Table
+        onRowSelection={handleRowSelection}
+        multiSelectable={true}
+        fixedHeader={true}
+      >
+        <TableHeader
+          displaySelectAll={false}
+          enableSelectAll={false}
+        >
           <TableRow>
             <TableHeaderColumn>Course Type</TableHeaderColumn>
             <TableHeaderColumn>Term</TableHeaderColumn>
@@ -60,13 +67,17 @@ const CourseList = ({ courses, setSelected, selectedCourses }) => {
             <TableHeaderColumn>Instructor</TableHeaderColumn>
           </TableRow>
         </TableHeader>
-        <TableBody>
+        <TableBody
+          deselectOnClickaway={false}
+          showRowHover={true}
+        >
           { tableData }
         </TableBody>
       </Table>
     </div>
   )
 }
+
 
 // PropTypes:
 // courses

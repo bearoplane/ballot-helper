@@ -1,9 +1,17 @@
 function createStore(data, schema, { cell, row }) {
   function createCourseObject(C) {
-    const dataObj = C.split(cell).reduce((ret, val, i) => ({
+    const dataObj = C.split(cell).reduce((ret, val, i) => {
+      return {
+        ...ret,
+        [schema[i]]: val.trim()
+      }
+    }, {})
+    /*
+    ({
       ...ret,
       [schema[i]]: val.trim()
     }), {})
+    */
 
     return { [`${dataObj.id}${dataObj.section}`]: dataObj }
   }

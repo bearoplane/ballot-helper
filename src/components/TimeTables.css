@@ -1,0 +1,68 @@
+.table__wrap {
+  height: 30%;
+
+  position: relative;
+  margin: 10px 0 30px;
+}
+
+.table__time {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 10%;
+  top: 10%;
+  height: 90%;
+}
+.table__time-label {
+  position: absolute;
+  width: 100%;
+  height: 4%;
+  font-size: 0.7em;
+  color: #333;
+}
+
+.table__days {
+  position: absolute;
+  width: 90%;
+  height: 10%;
+  right: 0;
+  top: 0;
+}
+.table__days-label {
+  position: absolute;
+  width: 20%;
+  height: 10%;
+  top: 0;
+  font-size: 0.7em;
+  color: #333;
+}
+.table__days-label.M { left: 0%; }
+.table__days-label.Tu { left: 20%; }
+.table__days-label.W { left: 40%; }
+.table__days-label.Th { left: 60%; }
+.table__days-label.F { left: 80%; }
+
+.table__grid {
+  position: absolute;
+  top: 10%;
+  right: 0;
+  width: 90%;
+  height: 90%;
+  background-image: url(/ttbg.png);
+  background-size: 100% 100%;
+}
+
+.table__grid-cell {
+  position: absolute;
+  width: 20%;
+  background: #d2393b;
+  font-size: .5rem;
+  text-align: left;
+  color: #fff;
+}
+
+.table__grid-cell.M { left: 0%; }
+.table__grid-cell.Tu { left: 20%; }
+.table__grid-cell.W { left: 40%; }
+.table__grid-cell.Th { left: 60%; }
+.table__grid-cell.F { left: 80%; }

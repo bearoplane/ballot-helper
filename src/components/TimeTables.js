@@ -1,18 +1,10 @@
 import React, { PureComponent } from 'react'
+import Drawer from 'material-ui/Drawer';
 
-import makeKey from '../makeKey'
+import './TimeTables.css'
 
-import bg from '../ttbg.png'
+// import makeKey from '../makeKey'
 
-const cellStyles = {
-  position: 'absolute',
-  width: '20%',
-  background: '#d2393b',
-  fontSize: '.5rem',
-  textAlign: 'left',
-  color: '#fff'
-}
-const testTime = "M 6-9"
 const dayPos = {
   M: 0,
   Tu: 1,
@@ -32,13 +24,13 @@ const TimeTableCell = ({ course, day }) => {
   // use 8:30am as zero
   start -= 8.5
   end -= 8.5
-console.log('one', 'start', start, 'end', end);
+
   // convert them to number of 30 minute intervals
   start *= 2
   end *= 2
-console.log('two', 'start', start, 'end', end);
+
   return (
-    <div style={{ ...cellStyles, height: `${(end - start) * 4}%`, top: `${start * 4}%`, left: `${dayPos[day] * 20}%` }}>
+    <div className={`table__grid-cell ${day}`} style={{ height: `${(end - start) * 4}%`, top: `${start * 4}%` }}>
       <span>{ course.title }</span>
     </div>
   )
@@ -46,47 +38,23 @@ console.log('two', 'start', start, 'end', end);
 
 class TimeTables extends PureComponent {
   state = {
-    open: true,
-    showWinter: false
+    open: true
   }
 
   toggleOpen = () => this.setState({ open: !this.state.open })
-  toggleTerm = () => this.setState({ showWinter: !this.state.showWinter })
 
   render() {
     const { courses } = this.props
-    const { showWinter } = this.state
-
-    const S = {
-      height: 400,
-      width: 300,
-      margin: 10,
-      top: 40,
-      left: 60
-    }
-
     let timeLabels = []
-    for (let i = 0; i < 25; i++) {
+    for (let i = 0; i < 25; i += 2) {
       timeLabels.push(
-        <div key={i} style={{
-          position: 'absolute',
-          width: S.left,
-          height: '4%',
-          top: `${(i * 4)}%`, fontSize: '0.7em', color: '#333'
-        }}>
+        <div className="table__time-label" key={i} style={{ top: `${(i * 4)}%` }}>
           { `${ Math.floor(8.5 + (i * 0.5)) }:${ i % 2 === 1 ? '00' : '30' }` }
         </div>
       )
     }
     const dayLabels = ['M', 'Tu', 'W', 'Th', 'F'].map((day, i) => (
-      <div key={i} style={{
-        position: 'absolute',
-        left: `${(i * 20)}%`,
-        width: '20%',
-        height: S.top,
-        top: S.margin,
-        fontSize: '0.7em', color: '#333'
-      }}>
+      <div key={i} className={`table__days-label ${day}`}>
         { day }
       </div>
     ))
@@ -113,57 +81,33 @@ class TimeTables extends PureComponent {
     }, [])
 
     return (
-      <div>
-        <div className="TimeTables gradient-pattern" style={{ borderRadius: '0 0 0 10px',
-          width: S.width + S.left + (S.margin * 2),
-          height: S.height + S.top + (S.margin * 2),
-          position: 'fixed', top: 0, right: S.width + S.left + (S.margin * 2)
-        }}>
-          <h3 style={{
-            margin: 0,
-            left: 10,
-            top: 10,
-            position: 'absolute',
-            fontWeight: 300,
-            color: '#333'
-          }}>Fall</h3>
-          <div style={{ position: 'absolute', height: S.height, left: S.margin, top: S.top }}>
+      <Drawer openSecondary={true} width="35%">
+        <h3>Fall</h3>
+        <div className="table__wrap">
+          <div className="table__time">
             { timeLabels }
           </div>
-          <div style={{ position: 'absolute', height: S.height, top: S.margin, left: S.left, width: S.width }}>
+          <div className="table__days">
             { dayLabels }
           </div>
-          <img style={{ position: 'absolute', height: S.height, width: S.width, top: S.top, left: S.left, zIndex: 0 }} src={bg} />
-          <div className="cellWrap" style={{ position: 'absolute', width: S.width, height: S.height, top: S.top, left: S.left, zIndex: 100 }}>
+          <div className="table__grid">
             { fallCells }
           </div>
         </div>
 
-        <div className="TimeTables gradient-pattern" style={{ borderRadius: '0 0 0 10px',
-          width: S.width + S.left + (S.margin * 2),
-          height: S.height + S.top + (S.margin * 2),
-          position: 'fixed', top: 0, right: 0
-        }}>
-          <h3 style={{
-            margin: 0,
-            left: 10,
-            top: 10,
-            position: 'absolute',
-            fontWeight: 300,
-            color: '#333'
-          }}>Winter</h3>
-          <div style={{ position: 'absolute', height: S.height, left: S.margin, top: S.top }}>
+        <h3>Winter</h3>
+        <div className="table__wrap">
+          <div className="table__time">
             { timeLabels }
           </div>
-          <div style={{ position: 'absolute', height: S.height, top: S.margin, left: S.left, width: S.width }}>
+          <div className="table__days">
             { dayLabels }
           </div>
-          <img style={{ position: 'absolute', height: S.height, width: S.width, top: S.top, left: S.left, zIndex: 0 }} src={bg} />
-          <div className="cellWrap" style={{ position: 'absolute', width: S.width, height: S.height, top: S.top, left: S.left, zIndex: 100 }}>
+          <div className="table__grid">
             { winterCells }
           </div>
         </div>
-      </div>
+      </Drawer>
     )
   }
 }
