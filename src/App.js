@@ -2,13 +2,15 @@ import React, { Component } from 'react'
 import logo from './logo.svg'
 import './App.css'
 
-import classes from './data'
+// import classes from './data'
+import classes from './otherdata'
 import createStore from './createStore'
 
 import CourseList from './components/CourseList'
 import TimeTables from './components/TimeTables'
 import TopMenu from './components/TopMenu'
 
+/*
 const schema = [
   'type',
   'term',
@@ -21,6 +23,16 @@ const schema = [
   'paper',
   'tclass',
   'texam'
+]
+*/
+const schema = [
+  'num',
+  'term',
+  'id',
+  'section',
+  'title',
+  'instructor',
+  'tclass'
 ]
 
 // These must match the values in the data
@@ -97,14 +109,15 @@ class App extends Component {
   render() {
     const { selected, store, type, selection } = this.state
 
+/*
     const courses = Object.values(store.data).filter(course => {
-      console.log('type', course.type, type[course.type], 'selection', course.selection, selection[course.selection])
       return type[course.type] && selection[course.selection]
     })
+*/
 // <TopMenu filters={{ type, selection }} updateFilters={this._updateFilters} />
     return (
       <div className="App">
-        <CourseList selectedCourses={selected} courses={courses} setSelected={this._setSelected} />
+        <CourseList selectedCourses={selected} courses={Object.values(store.data)} setSelected={this._setSelected} />
         <TimeTables courses={selected.map(key => store.get(key))} />
       </div>
     )

@@ -24,7 +24,7 @@ function createStore(data, schema, { cell, row }) {
   }
 
   let store = processData(data)
-
+console.log('store', store)
   return {
     data: store,
     get: (id) => store[id]

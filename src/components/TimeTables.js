@@ -18,7 +18,7 @@ const TimeTableCell = ({ course, day }) => {
 
   if (start >= 1 && start < 8.5)
     start += 12
-  if (end >= 1 && end < 10)
+  if (end >= 1 && end < 9.5)
     end += 12
 
   // use 8:30am as zero
