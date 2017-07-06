@@ -31,10 +31,11 @@ const CourseList = ({ courses, setSelected, selectedCourses }) => {
 
   const tableData = courses.map(course => (
     <TableRow key={makeKey(course)} selected={!!~selectedCourses.indexOf(makeKey(course))}>
-      <TableRowColumn>{ course.type }</TableRowColumn>
-      <TableRowColumn>{ course.term.slice(0, 1) }</TableRowColumn>
+      <TableRowColumn width="13%">{ course.type }</TableRowColumn>
+      <TableRowColumn width="4%">{ course.term.slice(0, 1) }</TableRowColumn>
       <TableRowColumn>{ course.title }</TableRowColumn>
-      <TableRowColumn>{ course.instructor }</TableRowColumn>
+      <TableRowColumn width="16%">{ course.tclass }</TableRowColumn>
+      <TableRowColumn width="20%">{ course.instructor }</TableRowColumn>
     </TableRow>
   ))
 
@@ -45,7 +46,7 @@ const CourseList = ({ courses, setSelected, selectedCourses }) => {
 <TableHeaderColumn>Selection</TableHeaderColumn>
 <TableHeaderColumn>Exam</TableHeaderColumn>
 <TableHeaderColumn>50% Paper</TableHeaderColumn>
-<TableHeaderColumn>Class Time</TableHeaderColumn>
+
 <TableHeaderColumn>Exam Time</TableHeaderColumn>
 */
 
@@ -61,10 +62,11 @@ const CourseList = ({ courses, setSelected, selectedCourses }) => {
           enableSelectAll={false}
         >
           <TableRow>
-            <TableHeaderColumn>Course Type</TableHeaderColumn>
-            <TableHeaderColumn>Term</TableHeaderColumn>
+            <TableHeaderColumn width="13%">Course Type</TableHeaderColumn>
+            <TableHeaderColumn width="4%">Term</TableHeaderColumn>
             <TableHeaderColumn>Title</TableHeaderColumn>
-            <TableHeaderColumn>Instructor</TableHeaderColumn>
+            <TableHeaderColumn width="16%">Class Time</TableHeaderColumn>
+            <TableHeaderColumn width="20%">Instructor</TableHeaderColumn>
           </TableRow>
         </TableHeader>
         <TableBody
