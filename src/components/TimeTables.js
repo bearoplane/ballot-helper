@@ -36,6 +36,55 @@ const TimeTableCell = ({ course, day }) => {
   )
 }
 
+const ExamTable = ({ exams }) => {
+  const E = exams.reduce((ret, val) => ({
+    ...ret,
+    [val.texam]: val
+  }), {})
+
+  return (
+    <table className="exam__table">
+      <thead>
+        <tr>
+          <th></th>
+          <th>1</th>
+          <th>2</th>
+          <th>3</th>
+          <th>4</th>
+          <th>5</th>
+          <th>6</th>
+          <th>7</th>
+          <th>8</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>9-12</th>
+          <th>{ E['1 Morn'] ? E['1 Morn'].title : null }</th>
+          <th>{ E['2 Morn'] ? E['2 Morn'].title : null }</th>
+          <th>{ E['3 Morn'] ? E['3 Morn'].title : null }</th>
+          <th>{ E['4 Morn'] ? E['4 Morn'].title : null }</th>
+          <th>{ E['5 Morn'] ? E['5 Morn'].title : null }</th>
+          <th>{ E['6 Morn'] ? E['6 Morn'].title : null }</th>
+          <th>{ E['7 Morn'] ? E['7 Morn'].title : null }</th>
+          <th>{ E['8 Morn'] ? E['8 Morn'].title : null }</th>
+        </tr>
+        <tr>
+          <th>2-5</th>
+          <th>{ E['1 Aft'] ? E['1 Aft'].title : null }</th>
+          <th>{ E['2 Aft'] ? E['2 Aft'].title : null }</th>
+          <th>{ E['3 Aft'] ? E['3 Aft'].title : null }</th>
+          <th>{ E['4 Aft'] ? E['4 Aft'].title : null }</th>
+          <th>{ E['5 Aft'] ? E['5 Aft'].title : null }</th>
+          <th>{ E['6 Aft'] ? E['6 Aft'].title : null }</th>
+          <th>{ E['7 Aft'] ? E['7 Aft'].title : null }</th>
+          <th>{ E['8 Aft'] ? E['8 Aft'].title : null }</th>
+        </tr>
+      </tbody>
+    </table>
+  )
+}
+
 class TimeTables extends PureComponent {
   state = {
     open: true
@@ -82,7 +131,7 @@ class TimeTables extends PureComponent {
 
     return (
       <Drawer openSecondary={true} width="35%">
-        <h3>Fall</h3>
+        <h4>Fall</h4>
         <div className="table__wrap">
           <div className="table__time">
             { timeLabels }
@@ -95,7 +144,7 @@ class TimeTables extends PureComponent {
           </div>
         </div>
 
-        <h3>Winter</h3>
+        <h4>Winter</h4>
         <div className="table__wrap">
           <div className="table__time">
             { timeLabels }
