@@ -98,8 +98,8 @@ class App extends Component {
     const { selected, store, type, selection } = this.state
 
     const courses = Object.values(store.data).filter(course => {
-      console.log('type', course.type, type[course.type], 'selection', course.selection, selection[course.selection])
-      return type[course.type] && selection[course.selection]
+      return true
+      // return type[course.type] && selection[course.selection]
     })
 // <TopMenu filters={{ type, selection }} updateFilters={this._updateFilters} />
     return (

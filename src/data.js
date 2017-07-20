@@ -33,18 +33,18 @@ Seminar|WINTER|Law4094|FR01B|Negotiations|Ballot|F Beaulieu|No|No|Tu 6:30-9:30|N
 Seminar|WINTER|Law4103|FR01B|Dispute Resolution|Ballot|E Desmond|No|No|Tu 5-8|N/A; \
 Seminar|WINTER|Law4163|FR01B|Law & Social Justice|Ballot|B Reentovich|No|Yes|M 6-9|N/A; \
 Seminar|WINTER|Law4183|FR01B|Trial Practice|Ballot|K VanBuskirk|No|No|N/A|N/A; \
-Special App|FALL|Law5113|FR01A|Judicial Internship|Application|T Moore|No|No|N/A|N/A; \
-Special App|FALL|Law5124|FR01A|Public Interest Org. Internship|Application|T Moore|No|No|N/A|N/A; \
-Special App|FALL|Law5143|FR01A|Public Prosecutions Internship|Application|T Moore|No|No|N/A|N/A; \
-Special App|FALL|Law5210|FR01X|Community Clinic Course|Application|M Marin|No|No|N/A|N/A; \
-Special App|WINTER|Law5113|FR01B|Judicial Internship|Application|T Moore|No|No|N/A|N/A; \
-Special App|WINTER|Law5123|FR01B|Attorney-General Internship|Application|T Moore|No|No|N/A|N/A; \
-Special App|WINTER|Law5143|FR01B|Public Prosecutions Internship|Application|T Moore|No|No|N/A|N/A; \
-Special App|WINTER|Law5210|FR01Y|Community Clinic Course (con’t from Fall)|Application|M Marin|No|No|N/A|N/A; \
-Instructor Approval|FALL|Law4093|FR01A|Directed Research|Approval|Supervisor|No|Opt|N/A|N/A; \
-Instructor Approval|FALL|Law5083|FR01A|Readings in Legal Theory|Approval|Supervisor|No|No|N/A|N/A; \
-Instructor Approval|WINTER|Law4093|FR01B|Directed Research|Approval|Supervisor|No|Opt|N/A|N/A; \
-Instructor Approval|WINTER|Law5083|FR01B|Readings in Legal Theory|Approval|Supervisor|No|No|N/A|N/A; \
+Special|FALL|Law5113|FR01A|Judicial Internship|Application|T Moore|No|No|N/A|N/A; \
+Special|FALL|Law5124|FR01A|Public Interest Org. Internship|Application|T Moore|No|No|N/A|N/A; \
+Special|FALL|Law5143|FR01A|Public Prosecutions Internship|Application|T Moore|No|No|N/A|N/A; \
+Special|FALL|Law5210|FR01X|Community Clinic Course|Application|M Marin|No|No|N/A|N/A; \
+Special|WINTER|Law5113|FR01B|Judicial Internship|Application|T Moore|No|No|N/A|N/A; \
+Special|WINTER|Law5123|FR01B|Attorney-General Internship|Application|T Moore|No|No|N/A|N/A; \
+Special|WINTER|Law5143|FR01B|Public Prosecutions Internship|Application|T Moore|No|No|N/A|N/A; \
+Special|WINTER|Law5210|FR01Y|Community Clinic Course (con’t from Fall)|Application|M Marin|No|No|N/A|N/A; \
+Approval|FALL|Law4093|FR01A|Directed Research|Instructor|Supervisor|No|Opt|N/A|N/A; \
+Approval|FALL|Law5083|FR01A|Readings in Legal Theory|Instructor|Supervisor|No|No|N/A|N/A; \
+Approval|WINTER|Law4093|FR01B|Directed Research|Instructor|Supervisor|No|Opt|N/A|N/A; \
+Approval|WINTER|Law5083|FR01B|Readings in Legal Theory|Instructor|Supervisor|No|No|N/A|N/A; \
 Other|FALL|Law3053|FR01A|Competition and Trade Regulation|eServices|N Siebrasse|Yes|No|M,W 11:30-1|3 Morn; \
 Other|FALL|Law3063|FR01A|Insurance|Ballot|B Lutz & M Henheffer|Yes|No|Tu,Th 3:30-5|3 Aft; \
 Other|FALL|Law3083|FR01A|Legislation|Ballot|D Klinck|Yes|No|Tu,Th 8:30-10|5 Aft; \
