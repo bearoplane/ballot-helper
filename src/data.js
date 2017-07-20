@@ -21,7 +21,7 @@ Seminar|FALL|Law3811|FR01A|SLT: Private Law and Social Justice|Ballot|J Thomson|
 Seminar|FALL|Law4023|FR01A|Children's Law|Ballot|T Moore|No|Yes|Tu,Th 10-11:30|N/A; \
 Seminar|FALL|Law4094|FR01A|Negotiations|Ballot|F Beaulieu|No|No|Tu 6:30-9:30|N/A; \
 Seminar|FALL|Law4103|FR01A|Dispute Resolution|Ballot|S Wells|No|No|M 6-9|N/A; \
-Seminar|FALL|Law4124|FR01A|Gender|||| Sexuality and Law|Ballot|K Pearlston|No|Yes|Tu,Th 2-3:30|N/A; \
+Seminar|FALL|Law4124|FR01A|Gender, Sexuality and Law|Ballot|K Pearlston|No|Yes|Tu,Th 2-3:30|N/A; \
 Seminar|FALL|Law4183|FR01A|Trial Practice|Ballot|E Desmond|No|No|N/A|N/A; \
 Seminar|WINTER|Law3473|FR01B|Health Law|Ballot|H Hobart|No|Yes|W 6:30-9:30|N/A; \
 Seminar|WINTER|Law3809|FR01B|SLT: Aboriginal Self-Government & Economic Development|Ballot|N O’Byrne|No|Yes|W 4-7|N/A; \
