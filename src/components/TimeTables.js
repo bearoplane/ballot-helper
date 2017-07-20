@@ -36,8 +36,29 @@ const TimeTableCell = ({ course, day }) => {
   )
 }
 
-const ExamTable = ({ exams }) => {
-  const E = exams.reduce((ret, val) => ({
+const FallExamDates = [
+  'Dec 8',
+  'Dec 11',
+  'Dec 12',
+  'Dec 13',
+  'Dec 14',
+  'Dec 15',
+  'Dec 18',
+  'Dec 19'
+]
+const WinterExamDates = [
+  'Apr 13',
+  'Apr 16',
+  'Apr 17',
+  'Apr 18',
+  'Apr 19',
+  'Apr 20',
+  'Apr 23',
+  'Apr 24'
+]
+
+const ExamTable = ({ courses, dates }) => {
+  const E = courses.reduce((ret, val) => ({
     ...ret,
     [val.texam]: val
   }), {})
@@ -47,38 +68,38 @@ const ExamTable = ({ exams }) => {
       <thead>
         <tr>
           <th></th>
-          <th>1</th>
-          <th>2</th>
-          <th>3</th>
-          <th>4</th>
-          <th>5</th>
-          <th>6</th>
-          <th>7</th>
-          <th>8</th>
+          <th>{ dates[0] }</th>
+          <th>{ dates[1] }</th>
+          <th>{ dates[2] }</th>
+          <th>{ dates[3] }</th>
+          <th>{ dates[4] }</th>
+          <th>{ dates[5] }</th>
+          <th>{ dates[6] }</th>
+          <th>{ dates[7] }</th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <th>9-12</th>
-          <th>{ E['1 Morn'] ? E['1 Morn'].title : null }</th>
-          <th>{ E['2 Morn'] ? E['2 Morn'].title : null }</th>
-          <th>{ E['3 Morn'] ? E['3 Morn'].title : null }</th>
-          <th>{ E['4 Morn'] ? E['4 Morn'].title : null }</th>
-          <th>{ E['5 Morn'] ? E['5 Morn'].title : null }</th>
-          <th>{ E['6 Morn'] ? E['6 Morn'].title : null }</th>
-          <th>{ E['7 Morn'] ? E['7 Morn'].title : null }</th>
-          <th>{ E['8 Morn'] ? E['8 Morn'].title : null }</th>
+          <td>9-12</td>
+          <td>{ E['1 Morn'] ? E['1 Morn'].title : null }</td>
+          <td>{ E['2 Morn'] ? E['2 Morn'].title : null }</td>
+          <td>{ E['3 Morn'] ? E['3 Morn'].title : null }</td>
+          <td>{ E['4 Morn'] ? E['4 Morn'].title : null }</td>
+          <td>{ E['5 Morn'] ? E['5 Morn'].title : null }</td>
+          <td>{ E['6 Morn'] ? E['6 Morn'].title : null }</td>
+          <td>{ E['7 Morn'] ? E['7 Morn'].title : null }</td>
+          <td>{ E['8 Morn'] ? E['8 Morn'].title : null }</td>
         </tr>
         <tr>
-          <th>2-5</th>
-          <th>{ E['1 Aft'] ? E['1 Aft'].title : null }</th>
-          <th>{ E['2 Aft'] ? E['2 Aft'].title : null }</th>
-          <th>{ E['3 Aft'] ? E['3 Aft'].title : null }</th>
-          <th>{ E['4 Aft'] ? E['4 Aft'].title : null }</th>
-          <th>{ E['5 Aft'] ? E['5 Aft'].title : null }</th>
-          <th>{ E['6 Aft'] ? E['6 Aft'].title : null }</th>
-          <th>{ E['7 Aft'] ? E['7 Aft'].title : null }</th>
-          <th>{ E['8 Aft'] ? E['8 Aft'].title : null }</th>
+          <td>2-5</td>
+          <td>{ E['1 Aft'] ? E['1 Aft'].title : null }</td>
+          <td>{ E['2 Aft'] ? E['2 Aft'].title : null }</td>
+          <td>{ E['3 Aft'] ? E['3 Aft'].title : null }</td>
+          <td>{ E['4 Aft'] ? E['4 Aft'].title : null }</td>
+          <td>{ E['5 Aft'] ? E['5 Aft'].title : null }</td>
+          <td>{ E['6 Aft'] ? E['6 Aft'].title : null }</td>
+          <td>{ E['7 Aft'] ? E['7 Aft'].title : null }</td>
+          <td>{ E['8 Aft'] ? E['8 Aft'].title : null }</td>
         </tr>
       </tbody>
     </table>
@@ -107,8 +128,22 @@ class TimeTables extends PureComponent {
         { day }
       </div>
     ))
-    const fallCells = courses.reduce((ret, course, i) => {
-      if (course.tclass !== 'N/A' && course.term === 'FALL') {
+
+    const fallCourses = courses.reduce((ret, course, i) => {
+      if (course.term === 'FALL')
+        ret.push(course)
+
+      return ret
+    }, [])
+    const winterCourses = courses.reduce((ret, course, i) => {
+      if (course.term === 'WINTER')
+        ret.push(course)
+
+      return ret
+    }, [])
+
+    const fallCells = fallCourses.reduce((ret, course, i) => {
+      if (course.tclass !== 'N/A') {
         const [ days, time ] = course.tclass.split(' ')
         days.split(',').forEach(day => ret.push(
           <TimeTableCell key={`${day}${i}`} course={course} day={day} />
@@ -118,8 +153,8 @@ class TimeTables extends PureComponent {
       return ret
     }, [])
 
-    const winterCells = courses.reduce((ret, course, i) => {
-      if (course.tclass !== 'N/A' && course.term === 'WINTER') {
+    const winterCells = winterCourses.reduce((ret, course, i) => {
+      if (course.tclass !== 'N/A') {
         const [ days, time ] = course.tclass.split(' ')
         days.split(',').forEach(day => ret.push(
           <TimeTableCell key={`${day}${i}`} course={course} day={day} />
@@ -130,7 +165,7 @@ class TimeTables extends PureComponent {
     }, [])
 
     return (
-      <Drawer openSecondary={true} width="35%">
+      <Drawer openSecondary={true} width="40%">
         <h4>Fall</h4>
         <div className="table__wrap">
           <div className="table__time">
@@ -142,6 +177,9 @@ class TimeTables extends PureComponent {
           <div className="table__grid">
             { fallCells }
           </div>
+        </div>
+        <div className="examtable__wrap">
+          <ExamTable courses={fallCourses} dates={FallExamDates} />
         </div>
 
         <h4>Winter</h4>
@@ -156,6 +194,10 @@ class TimeTables extends PureComponent {
             { winterCells }
           </div>
         </div>
+        <div className="examtable__wrap">
+          <ExamTable courses={winterCourses} dates={WinterExamDates} />
+        </div>
+
       </Drawer>
     )
   }

@@ -4,6 +4,19 @@
   position: relative;
   margin: 10px 0 30px;
 }
+.exam__table {
+  font-size: .5em;
+  width: 100%;
+}
+.exam__table th:first-child {
+  width: 1px;
+}
+.exam__table th:nth-child(n+2) {
+  width: 12%;
+}
+.exam__table tr {
+  height: 20px;
+}
 
 .table__time {
   position: absolute;
