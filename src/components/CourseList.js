@@ -21,7 +21,7 @@ const CourseList = ({ courses, setSelected, selectedCourses }) => {
 /*
 <TableRowColumn>{ course.id }</TableRowColumn>
 <TableRowColumn>{ course.section }</TableRowColumn>
-<TableRowColumn>{ course.selection }</TableRowColumn>
+
 <TableRowColumn>{ course.tclass }</TableRowColumn>
 <TableRowColumn>{ course.texam }</TableRowColumn>
 
@@ -31,7 +31,8 @@ const CourseList = ({ courses, setSelected, selectedCourses }) => {
 
   const tableData = courses.map(course => (
     <TableRow key={makeKey(course)} selected={!!~selectedCourses.indexOf(makeKey(course))}>
-      <TableRowColumn width="13%">{ course.type }</TableRowColumn>
+      <TableRowColumn width="10%">{ course.type }</TableRowColumn>
+      <TableRowColumn width="10%">{ course.selection }</TableRowColumn>
       <TableRowColumn width="4%">{ course.term.slice(0, 1) }</TableRowColumn>
       <TableRowColumn>{ course.title }</TableRowColumn>
       <TableRowColumn width="16%">{ course.tclass }</TableRowColumn>
@@ -63,6 +64,7 @@ const CourseList = ({ courses, setSelected, selectedCourses }) => {
         >
           <TableRow>
             <TableHeaderColumn width="13%">Course Type</TableHeaderColumn>
+            <TableHeaderColumn width="13%">Selection</TableHeaderColumn>
             <TableHeaderColumn width="4%">Term</TableHeaderColumn>
             <TableHeaderColumn>Title</TableHeaderColumn>
             <TableHeaderColumn width="16%">Class Time</TableHeaderColumn>
