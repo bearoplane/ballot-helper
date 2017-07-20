@@ -10,6 +10,9 @@ import {
 
 import makeKey from '../makeKey'
 
+const TERM_ID = '100046636'
+const PROGRAM_ID = '964'
+
 const CourseList = ({ courses, setSelected, selectedCourses }) => {
   const handleRowSelection = (selectedRows) => {
     if (selectedRows === 'all')
@@ -34,7 +37,12 @@ const CourseList = ({ courses, setSelected, selectedCourses }) => {
       <TableRowColumn width="10%">{ course.type }</TableRowColumn>
       <TableRowColumn width="10%">{ course.selection }</TableRowColumn>
       <TableRowColumn width="4%">{ course.term.slice(0, 1) }</TableRowColumn>
-      <TableRowColumn>{ course.title }</TableRowColumn>
+      <TableRowColumn>
+        <a
+          target="_blank"
+          href={`http://www.bkstr.com/webapp/wcs/stores/servlet/CourseMaterialsResultsView?catalogId=10001&categoryId=9604&storeId=11010&langId=-1&programId=${ PROGRAM_ID }&termId=${ TERM_ID }&divisionDisplayName=%20&departmentDisplayName=LAW&courseDisplayName=${ course.id.slice(3) }&sectionDisplayName=${ course.section }&demoKey=d&purpose=browse`}
+        >{ course.title }</a>
+      </TableRowColumn>
       <TableRowColumn width="16%">{ course.tclass }</TableRowColumn>
       <TableRowColumn width="20%">{ course.instructor }</TableRowColumn>
     </TableRow>
