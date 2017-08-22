@@ -3,10 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "casper": "^0.1.1",
+    "cheerio": "^1.0.0-rc.2",
     "material-ui": "^0.18.4",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
-    "react-tap-event-plugin": "^2.0.1"
+    "react-tap-event-plugin": "^2.0.1",
+    "request": "^2.81.0"
   },
   "devDependencies": {
     "autoprefixer": "7.1.0",

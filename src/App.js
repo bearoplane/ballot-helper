@@ -8,6 +8,7 @@ import createStore from './createStore'
 import CourseList from './components/CourseList'
 import TimeTables from './components/TimeTables'
 import TopMenu from './components/TopMenu'
+import TextBooks from './components/TextBooks'
 
 const schema = [
   'type',
@@ -101,11 +102,13 @@ class App extends Component {
       return true
       // return type[course.type] && selection[course.selection]
     })
+    const selectedCourses = selected.map(key => store.get(key))
 // <TopMenu filters={{ type, selection }} updateFilters={this._updateFilters} />
     return (
       <div className="App">
         <CourseList selectedCourses={selected} courses={courses} setSelected={this._setSelected} />
-        <TimeTables courses={selected.map(key => store.get(key))} />
+        <TimeTables courses={selectedCourses} />
+        <TextBooks courses={selectedCourses} />
       </div>
     )
   }
