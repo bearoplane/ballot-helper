@@ -5,6 +5,8 @@ import './App.css'
 import classes from './data'
 import createStore from './createStore'
 
+import Paper from 'material-ui/Paper'
+
 import CourseList from './components/CourseList'
 import TimeTables from './components/TimeTables'
 import TopMenu from './components/TopMenu'
@@ -53,6 +55,11 @@ class App extends Component {
         [Application]: true,
         [Instructor]: true,
         [eServices]: true
+      },
+      term: 'F',
+      selected: {
+        F: [],
+        W: []
       }
     }
   }
@@ -64,7 +71,7 @@ class App extends Component {
       return JSON.parse(selectedCourses)
     }
 
-    return []
+    return {F:[], W:[]}
   }
   saveToStorage(selected) {
     localStorage.setItem('BH:CACHED_COURSES', JSON.stringify(selected))
@@ -80,10 +87,14 @@ class App extends Component {
   }
 
   _setSelected = (selected) => {
+    const newSelected = {
+      ...this.state.selected,
+      [this.state.term]: selected
+    }
     this.setState({
-      selected
+      selected: newSelected
     })
-    this.saveToStorage(selected)
+    this.saveToStorage(newSelected)
   }
   _updateFilters = (filter, prop, val) => {
     this.setState({
@@ -94,18 +105,33 @@ class App extends Component {
     })
   }
 
+  _setTerm = (term) => {
+    this.setState({
+      term
+    })
+  }
+
   render() {
-    const { selected, store, type, selection } = this.state
+    const { selected, store, type, selection, term } = this.state
 
     const courses = Object.values(store.data).filter(course => {
       return true
       // return type[course.type] && selection[course.selection]
     })
-// <TopMenu filters={{ type, selection }} updateFilters={this._updateFilters} />
+
     return (
       <div className="App">
-        <CourseList selectedCourses={selected} courses={courses} setSelected={this._setSelected} />
-        <TimeTables courses={selected.map(key => store.get(key))} />
+        <TopMenu term={term} setTerm={this._setTerm} />
+        <div className="App__left App__side">
+          <Paper className="App__paper" zDepth={1}>
+            <CourseList selectedCourses={selected[term]} courses={courses} setSelected={this._setSelected} term={term} />
+          </Paper>
+        </div>
+        <div className="App__right App__side">
+          <Paper className="App__paper" zDepth={1}>
+            <TimeTables term={term} courses={selected[term].map(key => store.get(key))} />
+          </Paper>
+        </div>
       </div>
     )
   }

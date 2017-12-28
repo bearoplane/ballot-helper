@@ -1,0 +1,11 @@
+.TopMenu-toolbar {
+  position: fixed;
+  width: 100%;
+  top: 0;
+}
+
+.TopMenu-logo {
+  height: auto;
+  width: 44px;
+  margin: 0 14px;
+}

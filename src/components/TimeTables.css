@@ -1,21 +1,38 @@
+.timetables__wrap h2 {
+  font-size: 1em;
+  margin: 6px 4px 2px;
+  text-align: left;
+}
+
+.course_list__list {
+  padding-left: 4px;
+}
+.course_list__list li {
+  list-style: none;
+  text-align: left;
+  font-size: .8em;
+}
+
 .table__wrap {
-  height: 30%;
+  height: 340px;
 
   position: relative;
-  margin: 10px 0 30px;
+  //margin: 0 30px 20px;
 }
+
 .exam__table {
-  font-size: .5em;
+  font-size: .6em;
   width: 100%;
+  padding: .5em;
 }
 .exam__table th:first-child {
   width: 1px;
 }
 .exam__table th:nth-child(n+2) {
-  width: 12%;
+  width: 22%;
 }
 .exam__table tr {
-  height: 20px;
+  height: 30px;
 }
 
 .table__time {
@@ -67,11 +84,22 @@
 
 .table__grid-cell {
   position: absolute;
-  width: 20%;
-  background: #d2393b;
+  width: 19%;
+
+  background: linear-gradient(#c2292b, #d2393b);
+
   font-size: .5rem;
   text-align: left;
   color: #fff;
+
+  border-top: 1px solid #c2292b;
+
+  border-radius: 0 0 5px 2px;
+}
+
+.table__grid-cell span {
+  display: block;
+  padding: 2px 4px 2px 2px;
 }
 
 .table__grid-cell.M { left: 0%; }
