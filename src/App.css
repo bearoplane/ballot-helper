@@ -1,21 +1,47 @@
+::-webkit-scrollbar {
+  -webkit-appearance: none;
+  width: 7px;
+}
+::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  background-color: rgba(0,0,0,.5);
+  -webkit-box-shadow: 0 0 1px rgba(255,255,255,.5);
+}
+
 .App {
-  display: flex;
   height: 100%;
+  overflow: hidden;
+}
+
+.App__wrap {
   box-sizing: border-box;
   padding-top: 56px;
+  display: flex;
+  flex-direction: row;
+  margin-right: -0.5rem;
+  margin-left: -0.5rem;
+  height: 100%;
 }
 
 .App__side {
-  height: 100%;
-  padding: 10px;
   box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 0;
+  flex-shrink: 0;
+  height: 100%;
+  overflow: hidden;
+  box-sizing: border-box;
+  padding-right: 0.5rem;
+  padding-left: 0.5rem;
+  width: 50%;
 }
+
 .App__left {
-  flex: 1 1 auto;
-  width: 25%;
+
 }
 .App__right {
-  flex: 3 3 auto;
+
 }
 .App__paper {
   height: 100%;
@@ -24,7 +50,6 @@
 }
 
 .App-logo {
-  animation: App-logo-spin infinite 20s linear;
   height: 80px;
 }
 

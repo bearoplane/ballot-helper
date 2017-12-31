@@ -1,0 +1,104 @@
+.CourseList {
+  position: relative;
+  height: 100%;
+}
+
+.CourseList__header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 10px;
+  box-shadow: 0 0 5px #ddd;
+  z-index: 999;
+}
+
+.CourseList__list {
+  box-sizing: border-box;
+  height: 100%;
+  padding-top: 56px;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
+.CourseList__box {
+  margin: 4px;
+  cursor: pointer;
+  padding: 4px;
+  margin-top: 12px;
+}
+.CourseList__box:hover {
+  background: #f6f6f6 !important;
+}
+
+.CourseList__box table {
+  width: 100%;
+  font-size: 0.8rem;
+}
+.CourseList__box table td:nth-child(2) {
+  text-align: right;
+}
+
+.CourseList__box_selected {
+  background: rgba(194, 41, 43, 0.2) !important;
+}
+/*
+background: linear-gradient(#c2292b, #d2393b) !important;
+rgb(194, 41, 43)
+
+
+background: linear-gradient(#c72e31, #d73e41) !important;
+*/
+.CourseList__box_selected:hover {
+  background: rgba(194, 41, 43, 0.25) !important;
+}
+
+.CourseList__box_title {
+  font-size: 0.9rem;
+}
+
+.Chip_wrapper {
+  display: flex;
+}
+.Chip_wrapper .Chip {
+  margin-right: 4px !important;
+}
+.Chip_wrapper_right {
+  justify-content: flex-end;
+}
+.Chip_wrapper_right .Chip {
+  margin-left: 4px !important;
+  margin-right: 0 !important;
+}
+.Chip span {
+  line-height: 20px !important;
+  font-size: 0.8rem !important;
+  padding-right: 8px !important;
+  padding-left: 8px !important;
+}
+.Chip.Chip_faded {
+  opacity: 0.1;
+}
+
+.Chip__Compulsory { background-color: rgba(255, 0, 0, 0.5) !important; }
+.Chip__Seminar { background-color: rgba(255, 0, 255, 0.5) !important; }
+.Chip__Special { background-color: rgba(255, 255, 0, 0.5) !important; }
+.Chip__Approval { background-color: rgba(0, 255, 255, 0.5) !important; }
+.Chip__Other { background-color: rgba(0, 255, 0, 0.5) !important; }
+
+.Chip__Ballot { background-color: rgba(0, 0, 255, 0.5) !important; }
+.Chip__Application { background-color: rgba(128, 128, 0, 0.5) !important; }
+.Chip__Instructor { background-color: rgba(0, 128, 128, 0.5) !important; }
+.Chip__eServices { background-color: rgba(128, 0, 128, 0.5) !important; }
+
+/*
+Compulsory: 'Compulsory',
+Seminar: 'Seminar',
+Special: 'Special Application',
+Approval: 'Instructor Approval',
+Other: 'Other',
+
+Ballot: 'Ballot',
+Application: 'Application',
+Instructor: 'Instructor Approval',
+eServices: 'eServices'
+*/

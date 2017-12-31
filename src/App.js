@@ -116,21 +116,18 @@ class App extends Component {
 
     const courses = Object.values(store.data).filter(course => {
       return true
-      // return type[course.type] && selection[course.selection]
     })
 
     return (
       <div className="App">
         <TopMenu term={term} setTerm={this._setTerm} />
-        <div className="App__left App__side">
-          <Paper className="App__paper" zDepth={1}>
+        <div className="App__wrap">
+          <div className="App__left App__side">
             <CourseList selectedCourses={selected[term]} courses={courses} setSelected={this._setSelected} term={term} />
-          </Paper>
-        </div>
-        <div className="App__right App__side">
-          <Paper className="App__paper" zDepth={1}>
+          </div>
+          <div className="App__right App__side">
             <TimeTables term={term} courses={selected[term].map(key => store.get(key))} />
-          </Paper>
+          </div>
         </div>
       </div>
     )

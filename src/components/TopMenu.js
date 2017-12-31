@@ -7,6 +7,7 @@ import {
   ToolbarSeparator,
   ToolbarTitle
 } from 'material-ui/Toolbar'
+import RaisedButton from 'material-ui/RaisedButton'
 
 import MenuItem from 'material-ui/MenuItem'
 import DropDownMenu from 'material-ui/DropDownMenu'
@@ -34,6 +35,9 @@ class TopMenu extends PureComponent {
             <MenuItem value={'F'} primaryText="Fall Term" />
             <MenuItem value={'W'} primaryText="Winter Term" />
           </DropDownMenu>
+        </ToolbarGroup>
+        <ToolbarGroup>
+          <RaisedButton label="Show Both Terms" primary={true} />
         </ToolbarGroup>
       </Toolbar>
     )

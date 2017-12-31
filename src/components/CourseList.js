@@ -1,64 +1,124 @@
 import React from 'react'
 import './CourseList.css'
 
-import {
-  Table,
-  TableBody,
-  TableHeader,
-  TableHeaderColumn,
-  TableRow,
-  TableRowColumn,
-} from 'material-ui/Table'
-import Drawer from 'material-ui/Drawer'
+import Paper from 'material-ui/Paper'
+import {Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle} from 'material-ui/Toolbar'
+import Chip from 'material-ui/Chip'
+
+import { FallExamDates, WinterExamDates } from '../constants'
 
 import makeKey from '../makeKey'
+
+const termMap = {
+  Compulsory: 'Compulsory',
+  Seminar: 'Seminar',
+  Special: 'Special Application',
+  Approval: 'Instructor Approval',
+  Other: 'Other',
+
+  Ballot: 'Ballot',
+  Application: 'Application',
+  Instructor: 'Instructor Approval',
+  eServices: 'eServices'
+}
+
+const convertClass = (tclass) => tclass
+  .replace(',', ', ')
+  .replace('-', ' – ')
+  .replace('M', 'Monday')
+  .replace('Tu', 'Tuesday')
+  .replace('W', 'Wednesday')
+  .replace('Th', 'Thursday')
+  .replace('F', 'Friday')
+
+const convertExam = (texam, term) => {
+  let parts = texam.split(' ')
+
+  let dates = term === 'FALL' ? FallExamDates : WinterExamDates;
+
+  return dates[parts[0] - 1] + ' @ ' + ( parts[1] === 'Aft' ? '2pm' : '9am' )
+}
+
+const CourseBox = ({ course, selected, setSelected }) => {
+  let boxClass = "CourseList__box"
+
+  if (selected) boxClass += ' CourseList__box_selected'
+
+  return (
+    <Paper className={boxClass} zDepth={1} onClick={() => setSelected(makeKey(course))}>
+      <table>
+        <tbody>
+          <tr>
+            <td className="CourseList__box_title">{ course.id } { course.title }</td>
+            <td>{ course.instructor }</td>
+          </tr>
+          <tr>
+            <td>{ course.texam !== 'N/A' && convertClass(course.tclass) }</td>
+          </tr>
+          <tr>
+            <td>{ course.texam !== 'N/A' && 'Exam: ' + convertExam(course.texam, course.term) }</td>
+          </tr>
+          <tr>
+            <td>
+              <div className="Chip_wrapper">
+                <Chip className={ "Chip Chip__" + course.type }>{ termMap[course.type] }</Chip>
+                <Chip className={ "Chip Chip__" + course.selection }>{ termMap[course.selection] }</Chip>
+              </div>
+            </td>
+            <td>
+              <div className="Chip_wrapper Chip_wrapper_right">
+                <Chip className={ "Chip " + (course.exam === 'Yes' ? '' : 'Chip_faded') }>Exam</Chip>
+                <Chip className={ "Chip " + (course.paper === 'Yes' ? '' : 'Chip_faded') }>Paper</Chip>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </Paper>
+  )
+}
+
+/*
+<div className="CourseList__box__row">
+  <span className="CourseList__box_title"></span>
+  <span className="CourseList__box_instructor"></span>
+</div>
+<div className="CourseList__box__row">
+  <span></span>
+</div>
+*/
 
 const CourseList = ({ courses, setSelected, selectedCourses, term }) => {
   const filteredCourses = courses.filter(course => course.term.slice(0, 1) === term)
 
-  const handleRowSelection = (selectedRows) => {
-    if (selectedRows === 'all')
-      return setSelected('all')
+  const handleRowSelection = (key) => {
+    let removed = false
 
-    setSelected(selectedRows.map(num => makeKey(filteredCourses[num])))
+    let newSelected = selectedCourses.filter(course => {
+      if (course === key) removed = true
+
+      return course !== key
+    })
+
+    if (!removed) newSelected.push(key)
+
+    setSelected(newSelected)
   }
 
   const tableData = filteredCourses.map(course => (
-    <TableRow key={makeKey(course)} selected={!!~selectedCourses.indexOf(makeKey(course))}>
-      <TableRowColumn width="10%">{ course.type }</TableRowColumn>
-      <TableRowColumn width="10%">{ course.selection }</TableRowColumn>
-      <TableRowColumn>{ course.title }</TableRowColumn>
-      <TableRowColumn width="16%">{ course.tclass }</TableRowColumn>
-      <TableRowColumn width="20%">{ course.instructor }</TableRowColumn>
-    </TableRow>
+    <CourseBox course={course} selected={!!~selectedCourses.indexOf(makeKey(course))} setSelected={handleRowSelection} />
   ))
 
   return (
     <div className="CourseList">
-      <Table
-        onRowSelection={handleRowSelection}
-        multiSelectable={true}
-        fixedHeader={true}
-      >
-        <TableHeader
-          displaySelectAll={false}
-          enableSelectAll={false}
-        >
-          <TableRow>
-            <TableHeaderColumn width="10%">Course Type</TableHeaderColumn>
-            <TableHeaderColumn width="10%">Selection</TableHeaderColumn>
-            <TableHeaderColumn>Title</TableHeaderColumn>
-            <TableHeaderColumn width="16%">Class Time</TableHeaderColumn>
-            <TableHeaderColumn width="20%">Instructor</TableHeaderColumn>
-          </TableRow>
-        </TableHeader>
-        <TableBody
-          deselectOnClickaway={false}
-          showRowHover={true}
-        >
-          { tableData }
-        </TableBody>
-      </Table>
+      <Toolbar className="CourseList__header">
+        <ToolbarGroup firstChild={true}>
+          <ToolbarTitle text="Courses" />
+        </ToolbarGroup>
+      </Toolbar>
+      <div className="CourseList__list">
+        { tableData }
+      </div>
     </div>
   )
 }

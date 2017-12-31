@@ -72,13 +72,6 @@ class TimeTables extends PureComponent {
       return ret
     }, [])
 
-    const fallList = fallCourses.map(course => (
-      <li>{course.title}</li>
-    ))
-    const winterList = winterCourses.map(course => (
-      <li>{course.title}</li>
-    ))
-
     const fallCells = fallCourses.reduce((ret, course, i) => {
       if (course.tclass !== 'N/A') {
         const [ days, time ] = course.tclass.split(' ')
@@ -104,7 +97,6 @@ class TimeTables extends PureComponent {
 
     return (
       <div className="page__wrap">
-        <h2>Time Table</h2>
         <div className="table__wrap">
           <div className="table__time">
             { timeLabels }
@@ -117,20 +109,13 @@ class TimeTables extends PureComponent {
           </div>
         </div>
 
-        <Divider />
-
         <div className="examtable__wrap">
-          <h2>Exams</h2>
+          <h3>Exams</h3>
           <ExamTable
             courses={ term === 'F' ? fallCourses : winterCourses }
             dates={ term === 'F' ? FallExamDates : WinterExamDates }
           />
         </div>
-
-        <Divider />
-
-        <h2>Courses</h2>
-        <ul className="course_list__list">{ term === 'F' ? fallList : winterList }</ul>
       </div>
     )
   }

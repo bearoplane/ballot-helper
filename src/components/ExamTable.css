@@ -1,0 +1,19 @@
+.Exam__table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+  font-size: 0.9rem;
+  margin-top: 36px;
+}
+
+.Exam__table th {
+  width: 50%;
+  text-align: left;
+}
+.Exam__table th:first-child {
+  width: 36px;
+}
+
+.Exam__table td {
+  height: 48px;
+}

@@ -12,7 +12,7 @@ const ExamTable = ({ courses, dates }) => {
   }), {})
 
   return (
-    <table className="exam__table">
+    <table className="Exam__table">
       <thead>
         <tr>
           <th></th>
