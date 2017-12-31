@@ -78,16 +78,6 @@ const CourseBox = ({ course, selected, setSelected }) => {
   )
 }
 
-/*
-<div className="CourseList__box__row">
-  <span className="CourseList__box_title"></span>
-  <span className="CourseList__box_instructor"></span>
-</div>
-<div className="CourseList__box__row">
-  <span></span>
-</div>
-*/
-
 const CourseList = ({ courses, setSelected, selectedCourses, term }) => {
   const filteredCourses = courses.filter(course => course.term.slice(0, 1) === term)
 
