@@ -53,7 +53,7 @@ const CourseBox = ({ course, selected, setSelected }) => {
             <td>{ course.instructor }</td>
           </tr>
           <tr>
-            <td>{ course.texam !== 'N/A' && convertClass(course.tclass) }</td>
+            <td>{ course.tclass !== 'N/A' && convertClass(course.tclass) }</td>
           </tr>
           <tr>
             <td>{ course.texam !== 'N/A' && 'Exam: ' + convertExam(course.texam, course.term) }</td>

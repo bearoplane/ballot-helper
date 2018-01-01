@@ -66,9 +66,16 @@ class App extends Component {
 
   getFromStorage() {
     let selectedCourses = localStorage.getItem('BH:CACHED_COURSES')
+    let parsedCourses
 
-    if (selectedCourses && selectedCourses.hasOwnProperty('F')) {
-      return JSON.parse(selectedCourses)
+    if (selectedCourses) {
+      parsedCourses = JSON.parse(selectedCourses)
+    // } && selectedCourses.hasOwnProperty('F')) {
+      // return
+    }
+
+    if (parsedCourses.hasOwnProperty('F')) {
+      return parsedCourses
     }
 
     return {F:[], W:[]}
