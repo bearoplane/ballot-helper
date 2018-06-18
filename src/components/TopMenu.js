@@ -9,9 +9,6 @@ import {
 } from 'material-ui/Toolbar'
 import RaisedButton from 'material-ui/RaisedButton'
 
-import MenuItem from 'material-ui/MenuItem'
-import DropDownMenu from 'material-ui/DropDownMenu'
-
 import makeKey from '../makeKey'
 
 class TopMenu extends PureComponent {
@@ -20,7 +17,7 @@ class TopMenu extends PureComponent {
   }
 
   render() {
-    const { term, setTerm } = this.props;
+    const { term, setTerm, openDialog } = this.props;
 
     return (
       <Toolbar className="TopMenu-toolbar">
@@ -31,13 +28,11 @@ class TopMenu extends PureComponent {
 
           <ToolbarSeparator />
 
-          <DropDownMenu value={term} onChange={(e,i,v) => setTerm(v)}>
-            <MenuItem value={'F'} primaryText="Fall Term" />
-            <MenuItem value={'W'} primaryText="Winter Term" />
-          </DropDownMenu>
+          <RaisedButton label="Fall Term" disabled={term === "F"} onClick={() => setTerm("F")} />
+          <RaisedButton label="Winter Term" disabled={term === "W"} onClick={() => setTerm("W")} />
         </ToolbarGroup>
         <ToolbarGroup>
-          <RaisedButton label="Show Both Terms" primary={true} />
+          <RaisedButton label="Show Both Terms" primary={true} onClick={openDialog} />
         </ToolbarGroup>
       </Toolbar>
     )

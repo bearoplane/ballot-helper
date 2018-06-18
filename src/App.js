@@ -6,6 +6,8 @@ import classes from './data'
 import createStore from './createStore'
 
 import Paper from 'material-ui/Paper'
+import Dialog from 'material-ui/Dialog'
+import FlatButton from 'material-ui/FlatButton'
 
 import CourseList from './components/CourseList'
 import TimeTables from './components/TimeTables'
@@ -42,6 +44,7 @@ class App extends Component {
     super(props)
 
     this.state = {
+      dialogOpen: false,
       store: createStore(classes, schema, { cell: '|', row: ';' }),
       type: {
         [Compulsory]: true,
@@ -112,6 +115,17 @@ class App extends Component {
     })
   }
 
+  _openDialog = () => {
+    this.setState({
+      dialogOpen: true
+    })
+  }
+  _closeDialog = () => {
+    this.setState({
+      dialogOpen: false
+    })
+  }
+
   _setTerm = (term) => {
     this.setState({
       term
@@ -127,7 +141,7 @@ class App extends Component {
 
     return (
       <div className="App">
-        <TopMenu term={term} setTerm={this._setTerm} />
+        <TopMenu term={term} setTerm={this._setTerm} openDialog={this._openDialog} />
         <div className="App__wrap">
           <div className="App__left App__side">
             <CourseList selectedCourses={selected[term]} courses={courses} setSelected={this._setSelected} term={term} />
@@ -136,6 +150,35 @@ class App extends Component {
             <TimeTables term={term} courses={selected[term].map(key => store.get(key))} />
           </div>
         </div>
+
+        <Dialog
+          contentStyle={
+            {
+              width: '90%',
+              maxWidth: 'none'
+            }
+          }
+          modal={false}
+          open={this.state.dialogOpen}
+          actions={[
+            <FlatButton
+              label="Close"
+              primary={true}
+              onClick={this._closeDialog}
+            />
+          ]}
+        >
+          <div className="Dialog__wrap">
+            <div className="Dialog__left">
+              <h3 className="Dialog__heading">Fall</h3>
+              <TimeTables term="F" courses={selected["F"].map(key => store.get(key))} />
+            </div>
+            <div className="Dialog__right">
+              <h3 className="Dialog__heading">Winter</h3>
+              <TimeTables term="W" courses={selected["W"].map(key => store.get(key))} />
+            </div>
+          </div>
+        </Dialog>
       </div>
     )
   }
