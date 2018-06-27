@@ -2,7 +2,7 @@ import React from 'react'
 import './CourseList.css'
 
 import Paper from 'material-ui/Paper'
-import {Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle} from 'material-ui/Toolbar'
+import {Toolbar, ToolbarGroup, ToolbarTitle} from 'material-ui/Toolbar'
 import Chip from 'material-ui/Chip'
 
 import { FallExamDates, WinterExamDates } from '../constants'
@@ -78,8 +78,8 @@ const CourseBox = ({ course, selected, setSelected }) => {
   )
 }
 
-const CourseList = ({ courses, setSelected, selectedCourses, term }) => {
-  const filteredCourses = courses.filter(course => course.term.slice(0, 1) === term)
+const CourseList = ({ courses, setSelected, selectedCourses, term, year }) => {
+  const filteredCourses = courses.filter(course => { return course.term.slice(0, 1) === term && (!course.year || course.year === year) })
 
   const handleRowSelection = (key) => {
     let removed = false
@@ -95,8 +95,8 @@ const CourseList = ({ courses, setSelected, selectedCourses, term }) => {
     setSelected(newSelected)
   }
 
-  const tableData = filteredCourses.map(course => (
-    <CourseBox course={course} selected={!!~selectedCourses.indexOf(makeKey(course))} setSelected={handleRowSelection} />
+  const tableData = filteredCourses.map((course, i) => (
+    <CourseBox key={i} course={course} selected={!!~selectedCourses.indexOf(makeKey(course))} setSelected={handleRowSelection} />
   ))
 
   return (

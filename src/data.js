@@ -1,18 +1,18 @@
 export default " \
-Compulsory|FALL|Law2213|FR01A|Civil Procedure|Ballot|A Chatterjee|Yes|No|Tu,Th 3:30-5|1 Morn; \
-Compulsory|FALL|Law2223|FR01A|Commercial Law|Ballot|N Siebrasse|Yes|No|M,W 2:30-4|6 Morn; \
-Compulsory|FALL|Law2223|FR02A|Commercial Law|Ballot|J Williamson|Yes|No|Tu,Th 12:30-2|6 Morn; \
-Compulsory|FALL|Law2243|FR01A|Evidence|Ballot|N O’Byrne|Yes|No|W,F 8:30-10|7 Morn; \
-Compulsory|FALL|Law2253|FR01A|Administrative Law|Ballot|M Marin|Yes|No|M,W 11:30-1|4 Morn; \
-Compulsory|FALL|Law2273|FR01A|Business Organizations|Ballot|V Urinov|Yes|No|Tu,Th 8:30-10|2 Morn; \
-Compulsory|FALL|Law2313|FR01A|Professional Conduct|Ballot|E Veitch|Yes|No|M,W 10-11:30|1 Morn; \
-Compulsory|FALL|Law2323|FR01A|Conflict of Laws|Ballot|J McEvoy|Yes|No|M,W 1-2:30|1 Morn; \
-Compulsory|WINTER|Law2213|FR01B|Civil Procedure|Ballot|A Chatterjee|Yes|No|M,W 1-2:30|1 Morn; \
-Compulsory|WINTER|Law2243|FR01B|Evidence|Ballot|D Klinck|Yes|No|Tu,Th 10-11:30|2 Morn; \
-Compulsory|WINTER|Law2253|FR01B|Administrative Law|Ballot|K Froc|Yes|No|Tu,Th 2-3:30|4 Morn; \
-Compulsory|WINTER|Law2273|FR01B|Business Organizations|Ballot|M Marin|Yes|No|M,W 11:30-1|6 Morn; \
-Compulsory|WINTER|Law2313|FR01B|Professional Conduct|Ballot|E Veitch|Yes|No|M,W 10-11:30|1 Morn; \
-Compulsory|WINTER|Law2323|FR01B|Conflict of Laws|Ballot|A La Forest|Yes|No|Tu,Th 10-11:30|2 Morn; \
+Compulsory|FALL|Law2213|FR01A|Civil Procedure|Ballot|A Chatterjee|Yes|No|Tu,Th 3:30-5|1 Morn|2L; \
+Compulsory|FALL|Law2223|FR01A|Commercial Law|Ballot|N Siebrasse|Yes|No|M,W 2:30-4|6 Morn|2L; \
+Compulsory|FALL|Law2223|FR02A|Commercial Law|Ballot|J Williamson|Yes|No|Tu,Th 12:30-2|6 Morn|2L; \
+Compulsory|FALL|Law2243|FR01A|Evidence|Ballot|N O’Byrne|Yes|No|W,F 8:30-10|7 Morn|2L; \
+Compulsory|FALL|Law2253|FR01A|Administrative Law|Ballot|M Marin|Yes|No|M,W 11:30-1|4 Morn|2L; \
+Compulsory|FALL|Law2273|FR01A|Business Organizations|Ballot|V Urinov|Yes|No|Tu,Th 8:30-10|2 Morn|2L; \
+Compulsory|FALL|Law2313|FR01A|Professional Conduct|Ballot|E Veitch|Yes|No|M,W 10-11:30|1 Morn|3L; \
+Compulsory|FALL|Law2323|FR01A|Conflict of Laws|Ballot|J McEvoy|Yes|No|M,W 1-2:30|1 Morn|3L; \
+Compulsory|WINTER|Law2213|FR01B|Civil Procedure|Ballot|A Chatterjee|Yes|No|M,W 1-2:30|1 Morn|2L; \
+Compulsory|WINTER|Law2243|FR01B|Evidence|Ballot|D Klinck|Yes|No|Tu,Th 10-11:30|2 Morn|2L; \
+Compulsory|WINTER|Law2253|FR01B|Administrative Law|Ballot|K Froc|Yes|No|Tu,Th 2-3:30|4 Morn|2L; \
+Compulsory|WINTER|Law2273|FR01B|Business Organizations|Ballot|M Marin|Yes|No|M,W 11:30-1|6 Morn|2L; \
+Compulsory|WINTER|Law2313|FR01B|Professional Conduct|Ballot|E Veitch|Yes|No|M,W 10-11:30|1 Morn|3L; \
+Compulsory|WINTER|Law2323|FR01B|Conflict of Laws|Ballot|A La Forest|Yes|No|Tu,Th 10-11:30|2 Morn|3L; \
 Seminar|FALL|Law3563|FR01A|Advanced Criminal Law Seminar|Ballot|K O`Regan|No|Yes|M,W 11:30-1|N/A; \
 Seminar|FALL|Law3801|FR01A|Prosecution & Defense of Homicide (SLT )|Ballot|C Gunn|Yes|No|W 6-9|8 Aft; \
 Seminar|FALL|Law3806|FR01A|SLT: Disability Law and Policy|Ballot|A Chatterjee|No|Yes|M,W 10-11:30|N/A; \

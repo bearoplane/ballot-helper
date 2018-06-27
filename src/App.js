@@ -1,17 +1,16 @@
 import React, { Component } from 'react'
-import logo from './logo.svg'
 import './App.css'
 
 import classes from './data'
 import createStore from './createStore'
 
-import Paper from 'material-ui/Paper'
 import Dialog from 'material-ui/Dialog'
 import FlatButton from 'material-ui/FlatButton'
 
 import CourseList from './components/CourseList'
 import TimeTables from './components/TimeTables'
 import TopMenu from './components/TopMenu'
+import Profile from './components/Profile'
 
 const schema = [
   'type',
@@ -24,7 +23,8 @@ const schema = [
   'exam',
   'paper',
   'tclass',
-  'texam'
+  'texam',
+  'year'
 ]
 
 // These must match the values in the data
@@ -45,6 +45,7 @@ class App extends Component {
 
     this.state = {
       dialogOpen: false,
+      profileOpen: false,
       store: createStore(classes, schema, { cell: '|', row: ';' }),
       type: {
         [Compulsory]: true,
@@ -60,6 +61,7 @@ class App extends Component {
         [eServices]: true
       },
       term: 'F',
+      profile: null,
       selected: {
         F: [],
         W: []
@@ -83,19 +85,39 @@ class App extends Component {
 
     return {F:[], W:[]}
   }
-  saveToStorage(selected) {
-    localStorage.setItem('BH:CACHED_COURSES', JSON.stringify(selected))
+  getProfileFromStorage() {
+    let profile = localStorage.getItem('BH:PROFILE')
+
+    return profile
+  }
+  saveToStorage(key, selected) {
+    localStorage.setItem(`BH:${key}`, JSON.stringify(selected))
   }
 
   componentWillMount() {
     this.setState({
-      selected: this.getFromStorage()
+      selected: this.getFromStorage(),
+      profile: this.getProfileFromStorage()
     })
   }
+  componentDidMount() {
+    if (!this.state.profile) {
+      this.setState({
+        profileOpen: true
+      })
+    }
+  }
   componentWillUnmount() {
-    this.saveToStorage(this.state.selected)
+    this.saveToStorage('CACHED_COURSES', this.state.selected)
   }
 
+  _updateProfile = (profile) => {
+    console.log('updating profile', profile)
+    this.setState({
+      profile
+    })
+    this.saveToStorage('PROFILE', profile)
+  }
   _setSelected = (selected) => {
     const newSelected = {
       ...this.state.selected,
@@ -104,7 +126,7 @@ class App extends Component {
     this.setState({
       selected: newSelected
     })
-    this.saveToStorage(newSelected)
+    this.saveToStorage('CACHED_COURSES', newSelected)
   }
   _updateFilters = (filter, prop, val) => {
     this.setState({
@@ -125,6 +147,16 @@ class App extends Component {
       dialogOpen: false
     })
   }
+  _openProfile = () => {
+    this.setState({
+      profileOpen: true
+    })
+  }
+  _closeProfile = () => {
+    this.setState({
+      profileOpen: false
+    })
+  }
 
   _setTerm = (term) => {
     this.setState({
@@ -133,7 +165,7 @@ class App extends Component {
   }
 
   render() {
-    const { selected, store, type, selection, term } = this.state
+    const { selected, store, term, profile, profileOpen } = this.state
 
     const courses = Object.values(store.data).filter(course => {
       return true
@@ -141,15 +173,21 @@ class App extends Component {
 
     return (
       <div className="App">
-        <TopMenu term={term} setTerm={this._setTerm} openDialog={this._openDialog} />
+        <TopMenu term={term} setTerm={this._setTerm} openProfile={this._openProfile} openDialog={this._openDialog} />
         <div className="App__wrap">
           <div className="App__left App__side">
-            <CourseList selectedCourses={selected[term]} courses={courses} setSelected={this._setSelected} term={term} />
+            <CourseList year={profile.year} selectedCourses={selected[term]} courses={courses} setSelected={this._setSelected} term={term} />
           </div>
           <div className="App__right App__side">
             <TimeTables term={term} courses={selected[term].map(key => store.get(key))} />
           </div>
         </div>
+
+        <Profile
+          open={profileOpen}
+          profile={profile}
+          updateProfile={(e, val) => this._updateProfile({ year: val })}
+        />
 
         <Dialog
           contentStyle={

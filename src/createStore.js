@@ -6,12 +6,6 @@ function createStore(data, schema, { cell, row }) {
         [schema[i]]: val.trim()
       }
     }, {})
-    /*
-    ({
-      ...ret,
-      [schema[i]]: val.trim()
-    }), {})
-    */
 
     return { [`${dataObj.id}${dataObj.section}`]: dataObj }
   }

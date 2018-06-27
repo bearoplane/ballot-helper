@@ -9,20 +9,14 @@ import {
 } from 'material-ui/Toolbar'
 import RaisedButton from 'material-ui/RaisedButton'
 
-import makeKey from '../makeKey'
-
 class TopMenu extends PureComponent {
-  constructor(props) {
-    super(props)
-  }
-
   render() {
-    const { term, setTerm, openDialog } = this.props;
+    const { term, setTerm, openDialog, openProfile } = this.props;
 
     return (
       <Toolbar className="TopMenu-toolbar">
         <ToolbarGroup firstChild={true}>
-          <img src="/favicon.png" className="TopMenu-logo" />
+          <img src="/favicon.png" alt="Logo" className="TopMenu-logo" />
 
           <ToolbarTitle text="The Easy Scheduler" />
 
@@ -33,6 +27,7 @@ class TopMenu extends PureComponent {
         </ToolbarGroup>
         <ToolbarGroup>
           <RaisedButton label="Show Both Terms" primary={true} onClick={openDialog} />
+          <RaisedButton label="Profile" primary={true} onClick={openProfile} />
         </ToolbarGroup>
       </Toolbar>
     )
