@@ -1,23 +1,8 @@
-function createStore(data, schema, { cell, row }) {
-  function createCourseObject(C) {
-    const dataObj = C.split(cell).reduce((ret, val, i) => {
-      return {
-        ...ret,
-        [schema[i]]: val.trim()
-      }
-    }, {})
-
-    return { [`${dataObj.id}${dataObj.section}`]: dataObj }
-  }
-
-  function processData(D) {
-    return D.split(row).reduce((ret, val) => ({
-      ...ret,
-      ...createCourseObject(val, schema, cell)
-    }), {})
-  }
-
-  let store = processData(data)
+function createStore(data) {
+  let store = data.reduce((ret, val) => ({
+    ...ret,
+    [`${val.id}${val.section}`]: val
+  }), {})
 
   return {
     data: store,

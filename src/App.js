@@ -1,15 +1,16 @@
 import React, { Component } from 'react'
 import './App.css'
 
-import classes from './data'
+import classes from './data2'
 import createStore from './createStore'
 
-import Dialog from 'material-ui/Dialog'
-import FlatButton from 'material-ui/FlatButton'
+import Dialog from '@material-ui/core/Dialog'
+import Button from '@material-ui/core/Button'
 
 import CourseList from './components/CourseList'
 import TimeTables from './components/TimeTables'
 import TopMenu from './components/TopMenu'
+import UnderMenu from './components/UnderMenu'
 import Profile from './components/Profile'
 
 const schema = [
@@ -46,7 +47,7 @@ class App extends Component {
     this.state = {
       dialogOpen: false,
       profileOpen: false,
-      store: createStore(classes, schema, { cell: '|', row: ';' }),
+      store: createStore(classes),
       type: {
         [Compulsory]: true,
         [Seminar]: true,
@@ -75,12 +76,10 @@ class App extends Component {
 
     if (selectedCourses) {
       parsedCourses = JSON.parse(selectedCourses)
-    // } && selectedCourses.hasOwnProperty('F')) {
-      // return
-    }
 
-    if (parsedCourses.hasOwnProperty('F')) {
-      return parsedCourses
+      if (parsedCourses.hasOwnProperty('F')) {
+        return parsedCourses
+      }
     }
 
     return {F:[], W:[]}
@@ -88,7 +87,11 @@ class App extends Component {
   getProfileFromStorage() {
     let profile = localStorage.getItem('BH:PROFILE')
 
-    return profile
+    if (profile) {
+      return JSON.parse(profile)
+    }
+
+    return {year:'2L'}
   }
   saveToStorage(key, selected) {
     localStorage.setItem(`BH:${key}`, JSON.stringify(selected))
@@ -109,10 +112,10 @@ class App extends Component {
   }
   componentWillUnmount() {
     this.saveToStorage('CACHED_COURSES', this.state.selected)
+    this.saveToStorage('PROFILE', this.state.profile)
   }
 
   _updateProfile = (profile) => {
-    console.log('updating profile', profile)
     this.setState({
       profile
     })
@@ -173,7 +176,7 @@ class App extends Component {
 
     return (
       <div className="App">
-        <TopMenu term={term} setTerm={this._setTerm} openProfile={this._openProfile} openDialog={this._openDialog} />
+        <TopMenu openProfile={this._openProfile} selectedCourses={selected} term={term} setTerm={this._setTerm} openDialog={this._openDialog} />
         <div className="App__wrap">
           <div className="App__left App__side">
             <CourseList year={profile.year} selectedCourses={selected[term]} courses={courses} setSelected={this._setSelected} term={term} />
@@ -185,26 +188,16 @@ class App extends Component {
 
         <Profile
           open={profileOpen}
+          onClose={this._closeProfile}
           profile={profile}
           updateProfile={(e, val) => this._updateProfile({ year: val })}
         />
 
         <Dialog
-          contentStyle={
-            {
-              width: '90%',
-              maxWidth: 'none'
-            }
-          }
-          modal={false}
+          onClose={this._closeDialog}
+          fullWidth={true}
+          maxWidth={false}
           open={this.state.dialogOpen}
-          actions={[
-            <FlatButton
-              label="Close"
-              primary={true}
-              onClick={this._closeDialog}
-            />
-          ]}
         >
           <div className="Dialog__wrap">
             <div className="Dialog__left">

@@ -1,9 +1,8 @@
 import React from 'react'
 import './CourseList.css'
 
-import Paper from 'material-ui/Paper'
-import {Toolbar, ToolbarGroup, ToolbarTitle} from 'material-ui/Toolbar'
-import Chip from 'material-ui/Chip'
+import Paper from '@material-ui/core/Paper'
+import Chip from '@material-ui/core/Chip'
 
 import { FallExamDates, WinterExamDates } from '../constants'
 
@@ -45,7 +44,7 @@ const CourseBox = ({ course, selected, setSelected }) => {
   if (selected) boxClass += ' CourseList__box_selected'
 
   return (
-    <Paper className={boxClass} zDepth={1} onClick={() => setSelected(makeKey(course))}>
+    <Paper className={boxClass} elevation={1} onClick={() => setSelected(makeKey(course))}>
       <table>
         <tbody>
           <tr>
@@ -61,14 +60,14 @@ const CourseBox = ({ course, selected, setSelected }) => {
           <tr>
             <td>
               <div className="Chip_wrapper">
-                <Chip className={ "Chip Chip__" + course.type }>{ termMap[course.type] }</Chip>
-                <Chip className={ "Chip Chip__" + course.selection }>{ termMap[course.selection] }</Chip>
+                <Chip label={ termMap[course.type] } />
+                <Chip label={ termMap[course.selection] } />
               </div>
             </td>
             <td>
               <div className="Chip_wrapper Chip_wrapper_right">
-                <Chip className={ "Chip " + (course.exam === 'Yes' ? '' : 'Chip_faded') }>Exam</Chip>
-                <Chip className={ "Chip " + (course.paper === 'Yes' ? '' : 'Chip_faded') }>Paper</Chip>
+                <Chip label="Exam" />
+                <Chip label="Paper" />
               </div>
             </td>
           </tr>
@@ -79,7 +78,13 @@ const CourseBox = ({ course, selected, setSelected }) => {
 }
 
 const CourseList = ({ courses, setSelected, selectedCourses, term, year }) => {
-  const filteredCourses = courses.filter(course => { return course.term.slice(0, 1) === term && (!course.year || course.year === year) })
+  const filteredCourses = courses.filter(course => {
+    if (course.term.slice(0, 1) !== term) return false
+
+    if (course.type === 'Compulsory' && course.id.slice(4,5) !== year.slice(0,1)) return false
+
+    return true
+  })
 
   const handleRowSelection = (key) => {
     let removed = false
@@ -101,11 +106,6 @@ const CourseList = ({ courses, setSelected, selectedCourses, term, year }) => {
 
   return (
     <div className="CourseList">
-      <Toolbar className="CourseList__header">
-        <ToolbarGroup firstChild={true}>
-          <ToolbarTitle text="Courses" />
-        </ToolbarGroup>
-      </Toolbar>
       <div className="CourseList__list">
         { tableData }
       </div>
