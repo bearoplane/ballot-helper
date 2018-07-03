@@ -57,7 +57,7 @@ class TimeTables extends PureComponent {
   toggleOpen = () => this.setState({ open: !this.state.open })
 
   render() {
-    const { courses, term } = this.props
+    const { courses, term, sparse } = this.props
 
     const fallCourses = courses.reduce((ret, course, i) => {
       if (course.term === 'FALL')
@@ -110,7 +110,7 @@ class TimeTables extends PureComponent {
         </div>
 
         <div className="examtable__wrap">
-          <h3>Exams</h3>
+          { sparse ? null : <h3>Exams</h3> }
           <ExamTable
             courses={ term === 'F' ? fallCourses : winterCourses }
             dates={ term === 'F' ? FallExamDates : WinterExamDates }

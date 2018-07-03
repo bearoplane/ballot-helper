@@ -56,6 +56,9 @@ background: linear-gradient(#c72e31, #d73e41) !important;
   font-size: 0.9rem;
 }
 
+.Chip { height: 18px !important; }
+.Chip_disabled { opacity: 0.1; height: 18px !important; }
+
 .Chip__Compulsory { background-color: rgba(255, 0, 0, 0.5) !important; }
 .Chip__Seminar { background-color: rgba(255, 0, 255, 0.5) !important; }
 .Chip__Special { background-color: rgba(255, 255, 0, 0.5) !important; }

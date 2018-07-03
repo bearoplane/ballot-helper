@@ -50,9 +50,8 @@
   box-sizing: border-box;
   display: flex;
   flex-direction: row;
-  margin-right: -0.5rem;
-  margin-left: -0.5rem;
   height: 100%;
+  padding-top: 56px;
 }
 
 .Dialog__left {

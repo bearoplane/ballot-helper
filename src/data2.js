@@ -303,7 +303,7 @@ export default [
     "id": "Law5210",
     "section": "FR01X",
     "title": "Community Clinic Course",
-    "selection": "TBD",
+    "selection": "Application",
     "instructor": "TBD",
     "exam": "No",
     "paper": "No",
@@ -612,19 +612,6 @@ export default [
   },
   {
     "type": "Seminar",
-    "id": "Law3814",
-    "section": "FR01B",
-    "title": "SLT: Patent Law",
-    "selection": "eServices",
-    "instructor": "N Siebrasse",
-    "exam": "Yes",
-    "paper": "No",
-    "tclass": "M,W 11:30-1",
-    "texam": "6 Morn",
-    "term": "WINTER"
-  },
-  {
-    "type": "Seminar",
     "id": "Law4094",
     "section": "FR01B",
     "title": "Negotiations",
@@ -868,6 +855,19 @@ export default [
     "paper": "No",
     "tclass": "M,W 8:30-10",
     "texam": "2 Aft",
+    "term": "WINTER"
+  },
+  {
+    "type": "Seminar",
+    "id": "Law3814",
+    "section": "FR01B",
+    "title": "SLT: Patent Law",
+    "selection": "eServices",
+    "instructor": "N Siebrasse",
+    "exam": "Yes",
+    "paper": "No",
+    "tclass": "M,W 11:30-1",
+    "texam": "6 Morn",
     "term": "WINTER"
   },
   {

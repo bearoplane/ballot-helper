@@ -60,14 +60,14 @@ const CourseBox = ({ course, selected, setSelected }) => {
           <tr>
             <td>
               <div className="Chip_wrapper">
-                <Chip label={ termMap[course.type] } />
-                <Chip label={ termMap[course.selection] } />
+                <Chip className={`Chip Chip__${course.type}`} label={ termMap[course.type] } />
+                <Chip className={`Chip Chip__${course.selection}`} label={ termMap[course.selection] } />
               </div>
             </td>
             <td>
               <div className="Chip_wrapper Chip_wrapper_right">
-                <Chip label="Exam" />
-                <Chip label="Paper" />
+                <Chip className={course.exam === 'Yes' ? 'Chip Chip_active' : 'Chip Chip_disabled'} label="Exam" />
+                <Chip className={course.paper === 'Yes' ? 'Chip Chip_active' : 'Chip Chip_disabled'} label="Paper" />
               </div>
             </td>
           </tr>

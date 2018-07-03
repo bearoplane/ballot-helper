@@ -5,28 +5,20 @@ import classes from './data2'
 import createStore from './createStore'
 
 import Dialog from '@material-ui/core/Dialog'
-import Button from '@material-ui/core/Button'
+
+import AppBar from '@material-ui/core/AppBar'
+import Toolbar from '@material-ui/core/Toolbar'
+import IconButton from '@material-ui/core/IconButton'
+import CloseIcon from '@material-ui/icons/Close'
 
 import CourseList from './components/CourseList'
 import TimeTables from './components/TimeTables'
 import TopMenu from './components/TopMenu'
-import UnderMenu from './components/UnderMenu'
 import Profile from './components/Profile'
 
-const schema = [
-  'type',
-  'term',
-  'id',
-  'section',
-  'title',
-  'selection',
-  'instructor',
-  'exam',
-  'paper',
-  'tclass',
-  'texam',
-  'year'
-]
+import List from '@material-ui/core/List'
+import ListItem from '@material-ui/core/ListItem'
+import ListItemText from '@material-ui/core/ListItemText'
 
 // These must match the values in the data
 const Compulsory = 'Compulsory'
@@ -174,6 +166,21 @@ class App extends Component {
       return true
     })
 
+    const unschedCoursesFall = selected['F'].reduce((ret, key) => {
+      let course = store.get(key)
+      if (course.texam === 'N/A' && course.tclass === 'N/A') {
+        ret.push(course.title)
+      }
+      return ret
+    }, [])
+    const unschedCoursesWinter = selected['W'].reduce((ret, key) => {
+      let course = store.get(key)
+      if (course.texam === 'N/A' && course.tclass === 'N/A') {
+        ret.push(course.title)
+      }
+      return ret
+    }, [])
+
     return (
       <div className="App">
         <TopMenu openProfile={this._openProfile} selectedCourses={selected} term={term} setTerm={this._setTerm} openDialog={this._openDialog} />
@@ -195,18 +202,41 @@ class App extends Component {
 
         <Dialog
           onClose={this._closeDialog}
-          fullWidth={true}
-          maxWidth={false}
+
+          fullScreen
           open={this.state.dialogOpen}
         >
+          <AppBar className={classes.appBar}>
+            <Toolbar>
+              <IconButton color="inherit" onClick={this._closeDialog} aria-label="Close">
+                <CloseIcon />
+              </IconButton>
+            </Toolbar>
+          </AppBar>
           <div className="Dialog__wrap">
             <div className="Dialog__left">
-              <h3 className="Dialog__heading">Fall</h3>
-              <TimeTables term="F" courses={selected["F"].map(key => store.get(key))} />
+              <TimeTables term="F" courses={selected["F"].map(key => store.get(key))} sparse />
+              { unschedCoursesFall.length > 0 ?
+                <div>
+                  <h3 className="Dialog__heading">Other courses</h3>
+                  <List>
+                    <ListItem>
+                      { unschedCoursesFall.map(title => <ListItemText primary={title} />) }
+                    </ListItem>
+                  </List>
+                </div> : null }
             </div>
             <div className="Dialog__right">
-              <h3 className="Dialog__heading">Winter</h3>
-              <TimeTables term="W" courses={selected["W"].map(key => store.get(key))} />
+              <TimeTables term="W" courses={selected["W"].map(key => store.get(key))} sparse />
+              { unschedCoursesWinter.length > 0 ?
+                <div>
+                  <h3 className="Dialog__heading">Other courses</h3>
+                  <List>
+                    <ListItem>
+                      { unschedCoursesWinter.map(title => <ListItemText primary={title} />) }
+                    </ListItem>
+                  </List>
+                </div> : null }
             </div>
           </div>
         </Dialog>
