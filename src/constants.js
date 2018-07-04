@@ -1,22 +1,22 @@
 export const FallExamDates = [
-  'Fri, Dec 8',
-  'Mon, Dec 11',
-  'Tue, Dec 12',
-  'Wed, Dec 13',
-  'Thu, Dec 14',
-  'Fri, Dec 15',
-  'Mon, Dec 18',
-  'Tue, Dec 19'
+  'Mon, Dec 10',
+  'Tue, Dec 11',
+  'Wed, Dec 12',
+  'Thu, Dec 13',
+  'Fri, Dec 14',
+  'Mon, Dec 17',
+  'Tue, Dec 18',
+  'Wed, Dec 19'
 ]
 export const WinterExamDates = [
-  'Apr 13',
-  'Apr 16',
-  'Apr 17',
-  'Apr 18',
-  'Apr 19',
-  'Apr 20',
-  'Apr 23',
-  'Apr 24'
+  'Mon, Apr 15',
+  'Tue, Apr 16',
+  'Wed, Apr 17',
+  'Thu, Apr 18',
+  'Tue, Apr 23',
+  'Wed, Apr 24',
+  'Thu, Apr 25',
+  'Fri, Apr 26'
 ]
 
 export const dayPos = {
