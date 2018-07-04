@@ -36,6 +36,14 @@
   width: 50%;
 }
 
+.App__right {
+  box-sizing: border-box;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  padding-bottom: 160px;
+}
+
 .App__paper {
   height: 100%;
   overflow-y: scroll;

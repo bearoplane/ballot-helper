@@ -715,6 +715,19 @@ export default [
     "term": "WINTER"
   },
   {
+    "type": "Application",
+    "id": "Law5063",
+    "section": "FR01Y",
+    "title": "Law Journal (Both)",
+    "selection": "Application",
+    "instructor": "N/A",
+    "exam": "No",
+    "paper": "No",
+    "tclass": "N/A",
+    "texam": "N/A",
+    "term": "WINTER"
+  },
+  {
     "type": "Approval",
     "id": "Law4093",
     "section": "FR01B",
