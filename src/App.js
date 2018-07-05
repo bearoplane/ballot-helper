@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import './App.css'
 
+import firebase from './firebase'
+import UUID from 'node-uuid'
+
 import classes from './data2'
 import createStore from './createStore'
 
@@ -76,6 +79,15 @@ class App extends Component {
 
     return {F:[], W:[]}
   }
+  getUUID () {
+    let uuid = localStorage.getItem('BH:UUID')
+
+    if (uuid) {
+      return uuid
+    }
+
+    return UUID.v4()
+  }
   getProfileFromStorage() {
     let profile = localStorage.getItem('BH:PROFILE')
 
@@ -87,10 +99,19 @@ class App extends Component {
   }
   saveToStorage(key, selected) {
     localStorage.setItem(`BH:${key}`, JSON.stringify(selected))
+
+    if (key === 'CACHED_COURSES') {
+      try {
+        firebase.database().ref(this.state.uuid).set(selected)
+      } catch(e) {
+
+      }
+    }
   }
 
   componentWillMount() {
     this.setState({
+      uuid: this.getUUID(),
       selected: this.getFromStorage(),
       profile: this.getProfileFromStorage()
     })
@@ -101,6 +122,7 @@ class App extends Component {
         profileOpen: true
       })
     }
+    localStorage.setItem('BH:UUID', this.state.uuid)
   }
   componentWillUnmount() {
     this.saveToStorage('CACHED_COURSES', this.state.selected)
