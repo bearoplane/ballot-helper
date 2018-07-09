@@ -67,7 +67,7 @@ const CourseBox = ({ course, selected, setSelected }) => {
             <td>
               <div className="Chip_wrapper Chip_wrapper_right">
                 <Chip className={course.exam === 'Yes' ? 'Chip Chip_active' : 'Chip Chip_disabled'} label="Exam" />
-                <Chip className={course.paper === 'Yes' ? 'Chip Chip_active' : 'Chip Chip_disabled'} label="Paper" />
+                <Chip className={(course.paper === 'Yes' || course.paper === 'Opt') ? 'Chip Chip_active' : 'Chip Chip_disabled'} label={course.paper === 'Opt' ? 'Paper (Opt)' : 'Paper'} />
               </div>
             </td>
           </tr>

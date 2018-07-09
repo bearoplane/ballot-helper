@@ -28,7 +28,7 @@ export default [
   {
     "type": "Compulsory",
     "id": "Law2223",
-    "section": "FR01A",
+    "section": "FR02A",
     "title": "Commercial Law",
     "selection": "Ballot",
     "instructor": "J Williamson",
