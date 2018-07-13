@@ -728,6 +728,19 @@ export default [
     "term": "WINTER"
   },
   {
+    "type": "Application",
+    "id": "LawXXXX",
+    "section": "FR01Y",
+    "title": "Moot (Any)",
+    "selection": "Application",
+    "instructor": "N/A",
+    "exam": "No",
+    "paper": "No",
+    "tclass": "N/A",
+    "texam": "N/A",
+    "term": "WINTER"
+  },
+  {
     "type": "Approval",
     "id": "Law4093",
     "section": "FR01B",
