@@ -43,8 +43,14 @@ const CourseBox = ({ course, selected, setSelected }) => {
 
   if (selected) boxClass += ' CourseList__box_selected'
 
+  let bookstoreLink = `https://www.bkstr.com/webapp/wcs/stores/servlet/CourseMaterialsResultsView?catalogId=10001&categoryId=9604&storeId=11010&langId=-1&programId=964&termId=100051903&divisionDisplayName=%20&departmentDisplayName=LAW&courseDisplayName=${course.id.slice(3)}&sectionDisplayName=${course.section}&demoKey=d&purpose=browse`
+
+  const foo = (a, b, c) => {
+    console.log()
+  }
+
   return (
-    <Paper className={boxClass} elevation={1} onClick={() => setSelected(makeKey(course))}>
+    <Paper className={boxClass} elevation={1} onClick={e => { e.target.nodeName !== 'A' && setSelected(makeKey(course)) }}>
       <table>
         <tbody>
           <tr>
@@ -53,6 +59,7 @@ const CourseBox = ({ course, selected, setSelected }) => {
           </tr>
           <tr>
             <td>{ course.tclass !== 'N/A' && convertClass(course.tclass) }</td>
+            { course.term === 'FALL' ? <td><a rel="noopener noreferrer" target="_blank" href={bookstoreLink}>Textbooks</a></td> : null }
           </tr>
           <tr>
             <td>{ course.texam !== 'N/A' && 'Exam: ' + convertExam(course.texam, course.term) }</td>
