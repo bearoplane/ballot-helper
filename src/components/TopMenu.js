@@ -54,7 +54,7 @@ class TopMenu extends PureComponent {
         <AppBar position="static" color="default">
           <Toolbar>
             <img className={classes.logo} src="/favicon.png" alt="Logo" />
-            <Typography>The Easy Scheduler</Typography>
+            <Typography>The Easy Scheduler!</Typography>
             <UnderMenu selectedCourses={selectedCourses} term={term} setTerm={setTerm} openDialog={openDialog} />
             <Button variant="contained" onClick={openProfile}>Profile / Settings</Button>
           </Toolbar>
